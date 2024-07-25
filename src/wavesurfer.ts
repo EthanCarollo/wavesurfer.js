@@ -464,6 +464,7 @@ class WaveSurfer extends Player<WaveSurferEvents> {
   }
 
   public async loadArrayBuffer(arrayBuffer: ArrayBuffer){
+    this.decodedData = null
     this.decodedData = await Decoder.decode(arrayBuffer, this.options.sampleRate)
     if (this.decodedData) {
       this.emit('decode', this.getDuration())

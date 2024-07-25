@@ -648,6 +648,7 @@ class Renderer extends EventEmitter<RendererEvents> {
     this.cursor.style.backgroundColor = `${this.options.cursorColor || this.options.progressColor}`
     this.cursor.style.width = `${this.options.cursorWidth}px`
 
+    this.audioData = null
     this.audioData = audioData
 
     this.emit('render')
