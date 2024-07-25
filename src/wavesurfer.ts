@@ -463,6 +463,16 @@ class WaveSurfer extends Player<WaveSurferEvents> {
     this.emit('ready', this.getDuration())
   }
 
+  public async loadArrayBuffer(arrayBuffer: ArrayBuffer){
+    this.decodedData = await Decoder.decode(arrayBuffer, this.options.sampleRate)
+    if (this.decodedData) {
+      this.emit('decode', this.getDuration())
+      this.renderer.render(this.decodedData)
+    }
+
+    this.emit('ready', this.getDuration())
+  }
+
   /** Load an audio file by URL, with optional pre-decoded audio data */
   public async load(url: string, channelData?: WaveSurferOptions['peaks'], duration?: number) {
     try {
